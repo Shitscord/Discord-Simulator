@@ -9,7 +9,10 @@ def recursive_markov(markovstring,markovcount): #Markov count is # of iterations
             strlist=[]
             for i in range(markovcount):
                strapp=model_text.make_sentence()
-               strlist.append(strapp)   
+               if strapp=="None" or strapp=="none":
+                   markovcount=markovcount-5
+               else:
+                   strlist.append(strapp)   
             markovstring=str(" ".join(str(s) for s in strlist))
             print()
             print("Generation",str(gencount)," Complete")
@@ -21,4 +24,6 @@ def recursive_markov(markovstring,markovcount): #Markov count is # of iterations
                 y=False
         model_text=markovify.Text(markovstring)
         finalstr=model_text.make_sentence()
-        return(finalstr)
+        print(finalstr)
+        return(finalstr.replace("None",""))
+

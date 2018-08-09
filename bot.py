@@ -3,7 +3,7 @@ import discord, tokens, markover
 
 
 Client = discord.Client()
-client = commands.Bot(command_prefix="!")
+client = commands.Bot(command_prefix="$")
 
 @client.event
 async def on_ready():
@@ -11,11 +11,10 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if message.content.upper().startswith('!SIMULATE'):
+    if message.content.upper().startswith('$SIMULATE'):
         print("Beginning Markovify")
         command = message.content.split(" ")
         markover.mscript(command, client, message)
 
 client.run(tokens.discord)
 
-# To send message: constants.run_coro(client.send_message(message.channel, "message"), client)
