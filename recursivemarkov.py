@@ -21,5 +21,4 @@ def recursive_markov(markovstring,markovcount): #Markov count is # of iterations
                 y=False
         model_text=markovify.Text(markovstring)
         finalstr=model_text.make_sentence()
-        print(finalstr)
-        input()
+        return(finalstr)

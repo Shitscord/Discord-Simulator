@@ -1,4 +1,4 @@
-import constants, asyncio, markovify
+import constants, asyncio, markovify, recursivemarkov
 
 def mscript(command, client, message):
     mlist=[]
@@ -15,11 +15,11 @@ def mscript(command, client, message):
                     mlist.append(mstr)
         await get_logs_from(message.channel)
         mfullstr=str(" ".join(str(s) for s in mlist))
+        mlistlen=len(mlist)
+        markov_final = recursivemarkov.recursive_markov(mfullstr,mlistlen)
         
-        model_text=markovify.Text(mfullstr)
-        markov_final=model_text.make_sentence()
+        #model_text=markovify.Text(mfullstr)
+        #markov_final=model_text.make_sentence()
 
         constants.run_coro(client.send_message(message.channel, str(markov_final)), client)
     asyncio.ensure_future(asyncscript(command, client, message))
-    
-    
