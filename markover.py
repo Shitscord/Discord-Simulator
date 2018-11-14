@@ -1,4 +1,4 @@
-import constants, asyncio, markovify, time
+import constants, asyncio, markovify
 
 def mscript(command, client, message):
 
@@ -18,21 +18,5 @@ def mscript(command, client, message):
             markovString += " "
             
         constants.run_coro(client.send_message(message.channel, markovString), client)
-     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+   
     asyncio.ensure_future(asyncscript(command, client, message))
