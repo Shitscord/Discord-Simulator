@@ -7,10 +7,18 @@ def mscript(command, client, message):
         messageser = str(message.server.id)
         messagecha = str(message.channel.id)
         corpusFile = "data/"+messageser+"/"+messagecha+".txt"
-        corpusRead = open(corpusFile, "r")
+        corpusRead = open(corpusFile, "r",encoding='utf-8')
         corpusText = corpusRead.read()
-        print(corpusText)
         
+        corpusModel = markovify.Text(corpusText)
+        
+        markovString=""
+        for i in range(3):
+            markovString += str(corpusModel.make_short_sentence(140))
+            markovString += " "
+            
+        constants.run_coro(client.send_message(message.channel, markovString), client)
+     
         
         
         
