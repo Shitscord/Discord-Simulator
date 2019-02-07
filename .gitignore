@@ -2,3 +2,4 @@ json
 tokens.py
 __pycache__
 data
+.vscode
