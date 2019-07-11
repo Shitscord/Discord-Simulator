@@ -9,7 +9,7 @@ def log(client, message):
             pass
         else:
             messagestr = str(message.content)
-            messageser = str(message.server.id)
+            messageser = str(message.guild.id)
             messagecha = str(message.channel.id)
     
             if not messagestr.endswith(".") and not messagestr.endswith("!") and not messagestr.endswith("?"):
@@ -40,7 +40,7 @@ def log(client, message):
                     oldData=""
                     oldList=[]
                     corpus = open(filename,"w",encoding='utf-8')
-                    async for old in client.logs_from(message.channel, limit=100000):
+                    async for old in message.channel.history(limit=100000):
                         print(old.content)
                         oldList.append(old)
                     
